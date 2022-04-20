@@ -6,6 +6,7 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import {GithubProvider} from "./context/Github/GithubContext";
 import {AlertProvider} from "./context/Alert/AlertContext";
+import Alert from "./components/layout/Alert";
 
 function App() {
     return (
@@ -14,7 +15,8 @@ function App() {
                 <Router>
                     <div className="flex flex-col justify-between min-h-screen">
                         <Navbar/>
-                        <main>
+                        <main className={'container mx-auto px-3 pb-12'}>
+                            <Alert/>
                             <Routes>
                                 <Route path={"/"} element={<Home/>}/>
                                 <Route path={"/about"} element={<About/>}/>

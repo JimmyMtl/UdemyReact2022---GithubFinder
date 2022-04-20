@@ -1,29 +1,30 @@
 import React, {useState, useContext} from 'react';
 import GithubContext from "../../context/Github/GithubContext";
+import AlertContext from "../../context/Alert/AlertContext";
 
 const UserSearch = () => {
     const [text, setText] = useState('')
 
     const {users, searchUsers, clearUsers} = useContext(GithubContext)
-
+    const {setAlert} = useContext(AlertContext)
     const handleChange = (e) => setText(e.target.value)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         if (text === '') {
-            alert('Please enter something')
+            setAlert('Please enter something', 'error')
         } else {
             //    @todo - search users
             searchUsers(text)
             setText('')
         }
     }
-    const handleClear = (e)=>{
+    const handleClear = (e) => {
         clearUsers()
     }
 
     return (
-        <div className={'grid grid-cols-1 md:grid-cols-2 mb-8 gap-8 p-10'}>
+        <div className={'grid grid-cols-1 md:grid-cols-2 mb-8 gap-8'}>
             <div>
 
                 <form onSubmit={handleSubmit}>
