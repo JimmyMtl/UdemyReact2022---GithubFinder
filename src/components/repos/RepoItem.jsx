@@ -16,7 +16,7 @@ const RepoItem = ({repo}) => {
         <div className={'mb-2 rounded-md card bg-gray-800 transition hover:bg-gray-900'}>
             <div className="card-body">
                 <h3 className="mb-2 text-xl font-semibold">
-                    <a href={html_url}>
+                    <a href={html_url} target={'_blank'} rel={'noreferrer'}>
                         <FaLink className={'inline mr-1'}/>{name}
                     </a>
                 </h3>
@@ -32,7 +32,7 @@ const RepoItem = ({repo}) => {
                         <FaInfo className={'mr-2'}/>{open_issues}
                     </div>
                     <div className="mr-2 badge badge-warning badge-lg">
-                        <FaUtensils className={'mr-2'}/>{watchers_count}
+                        <FaUtensils className={'mr-2'}/>{forks}
                     </div>
                 </div>
             </div>
