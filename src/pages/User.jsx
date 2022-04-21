@@ -4,7 +4,7 @@ import GithubContext from "../context/Github/GithubContext";
 import {FaCodepen, FaStore, FaUserFriends, FaUsers} from "react-icons/fa";
 import Spinner from "../components/layout/Spinner";
 import RepoList from "../components/repos/RepoList";
-import {getUser, getUserRepos} from "../context/Github/GithubActions";
+import {getUserAndRepos} from "../context/Github/GithubActions";
 
 const User = ({match}) => {
     const params = useParams()
@@ -13,11 +13,9 @@ const User = ({match}) => {
     useEffect(() => {
         dispatch({type: 'SET_LOADING'})
         const getUserData = async () => {
-            const userData = await getUser(params.login)
-            dispatch({type: 'GET_USER', payload: userData})
+            const userDataAndRepos = await getUserAndRepos(params.login)
+            dispatch({type: 'GET_USER_AND_REPOS', payload: userDataAndRepos})
 
-            const userRepoData = await getUserRepos(params.login)
-            dispatch({type: 'GET_REPOS', payload: userRepoData})
         }
         getUserData()
     }, [dispatch, params.login])
