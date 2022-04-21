@@ -10,14 +10,16 @@ const RepoList = ({repos}) => {
                 <h2 className="text-3xl my-4 font-bold card-title">
                     Latest Repositories
                 </h2>
-            {repos.map((repo,key)=>(
-                <RepoItem key={key} repo={repo}/>
-            ))}
+                <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                    {repos.map((repo, key) => (
+                        <RepoItem key={key} repo={repo}/>
+                    ))}
+                </div>
             </div>
         </div>
     );
 };
-RepoList.propTypes={
+RepoList.propTypes = {
     repos: PropTypes.array.isRequired
 }
 
