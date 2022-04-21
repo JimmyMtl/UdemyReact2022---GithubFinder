@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import GithubContext from "../../context/Github/GithubContext";
 import AlertContext from "../../context/Alert/AlertContext";
 import {searchUsers} from "../../context/Github/GithubActions";
@@ -18,10 +18,18 @@ const UserSearch = () => {
             dispatch({type: 'SET_LOADING'})
             const users = await searchUsers(text)
             dispatch({type: 'GET_USERS', payload: users})
-            setText('')
         }
     }
-
+    useEffect(() => {
+        const getUsers = async () => {
+            if (text !== '') {
+                dispatch({type: 'SET_LOADING'})
+                const users = await searchUsers(text)
+                dispatch({type: 'GET_USERS', payload: users})
+            }
+        }
+        getUsers()
+    }, [text])
     return (
         <div className={'grid grid-cols-1 md:grid-cols-2 mb-8 gap-8'}>
             <div>
